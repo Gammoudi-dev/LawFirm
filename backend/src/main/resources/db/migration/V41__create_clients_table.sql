@@ -13,8 +13,8 @@ CREATE TABLE clients (
     phone            VARCHAR(20),
     email            VARCHAR(100) UNIQUE,
     address          TEXT,
-    notes            TEXT,
     country          VARCHAR(100),
+    notes            TEXT,
     active           BOOLEAN NOT NULL DEFAULT TRUE,
     
 

@@ -185,7 +185,7 @@ export class ClientListComponent implements OnInit, OnDestroy {
   saveClient(): void {
     if (!this.form().country?.trim()) {
       this.modalError.set('Country is required');
-     return;
+      return;
     }
     this.modalLoading.set(true);
     this.modalError.set(null);

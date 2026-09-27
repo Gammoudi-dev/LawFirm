@@ -9,6 +9,7 @@ export interface ClientSummary {
   taxNumber?: string;
   phone?: string;
   email?: string;
+  country?: string;
   active: boolean;
   caseCount: number;
   dateOfBirth?: string;
@@ -23,6 +24,7 @@ export interface ClientResponse {
   phone?: string;
   email?: string;
   address?: string;
+  country?: string;
   notes?: string;
   cin?: string;
   gender?: Gender;
@@ -42,6 +44,7 @@ export interface CreateClientRequest {
   phone?: string;
   email?: string;
   address?: string;
+  country?: string;
   notes?: string;
   cin?: string;
   gender?: Gender;
@@ -56,6 +59,7 @@ export interface UpdateClientRequest {
   phone?: string;
   email?: string;
   address?: string;
+  country?: string;
   notes?: string;
   cin?: string;
   gender?: Gender;

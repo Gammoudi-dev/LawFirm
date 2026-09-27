@@ -15,6 +15,7 @@ public record ClientResponse(
     String phone,
     String email,
     String address,
+    String country,
     String notes,
     String cin,
     Gender gender,
