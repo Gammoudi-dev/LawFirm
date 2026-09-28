@@ -15,6 +15,15 @@ export const DOCUMENT_CATEGORY_LABELS: Record<DocumentCategory, string> = {
   AUTRE: 'Autre',
 };
 
+export interface DocumentSummary {
+  id: number;
+  caseId: number;
+  caseNumber: string;
+  title: string;
+  description?: string;
+  category: DocumentCategory;
+}
+
 export interface DocumentResponse {
   id: number;
   caseId: number;

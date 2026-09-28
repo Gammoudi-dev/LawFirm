@@ -27,7 +27,8 @@ export class SidebarComponent {
     { label: 'Cases', icon: 'description', route: '/cases', permission: 'CASE_READ' },
     { label: 'Lawyers', icon: 'gavel', route: '/lawyers', permission: 'LAWYER_READ' },
     { label: 'Clients', icon: 'people', route: '/clients', permission: 'CLIENT_READ' },
-    { label: 'Products', icon: 'inventory_2', route: '/products', permission: 'PRODUCT_READ' },
+    { label: 'Product', icon: 'inventory_2', route: '/products', permission: 'PRODUCT_READ' },
+    { label: 'Documents', icon: 'description', route: '/documents' },
     {
       label: 'Financial',
       icon: 'account_balance_wallet',

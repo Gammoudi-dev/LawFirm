@@ -80,7 +80,7 @@ class ClientServiceTest {
     void create_ShouldSave_WhenIndividualWithValidNames() {
         CreateClientRequest request = new CreateClientRequest(
             ClientType.INDIVIDUAL, "Mohammed", "Benali", null, null,
-            null, null, "AB123456", null,
+            null, null, "AB123456", null,null,
             LocalDate.of(1990, 1, 1), null, null
         );
 
@@ -99,7 +99,7 @@ class ClientServiceTest {
     void create_ShouldThrow_WhenIndividualMissingFirstName() {
         CreateClientRequest request = new CreateClientRequest(
             ClientType.INDIVIDUAL, null, "Benali", null, null,
-            null, null, null, null,
+            null, null, null, null,null,
             LocalDate.of(1990, 1, 1), null, null
         );
 
@@ -114,7 +114,7 @@ class ClientServiceTest {
     void create_ShouldThrow_WhenCorporateMissingCompanyName() {
         CreateClientRequest request = new CreateClientRequest(
             ClientType.CORPORATE, null, null, null, null,
-            null, null, null, null,
+            null, null, null, null,null,
             null, null, null
         );
 
@@ -129,7 +129,7 @@ class ClientServiceTest {
     void create_ShouldThrow_WhenClientUnder18() {
         CreateClientRequest request = new CreateClientRequest(
             ClientType.INDIVIDUAL, "Young", "Client", null, null,
-            null, null, null, null,
+            null, null, null, null,null,
             LocalDate.now().minusYears(17), null, null
         );
 
@@ -144,7 +144,7 @@ class ClientServiceTest {
     void create_ShouldThrow_WhenDuplicateCin() {
         CreateClientRequest request = new CreateClientRequest(
             ClientType.INDIVIDUAL, "Mohammed", "Benali", null, null,
-            null, null, "AB123456", null,
+            null, null, "AB123456", null,null,
             LocalDate.of(1990, 1, 1), null, null
         );
 
