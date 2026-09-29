@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, inject, signal, computed } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Subject, debounceTime, takeUntil } from 'rxjs';
-import { DocumentSummary } from '../../../core/models/document.model';
+import { DocumentSummary } from '../../core/models/document.model';
+
 @Component({
   selector: 'app-document-list',
   standalone: true,
