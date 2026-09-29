@@ -22,11 +22,6 @@
       </button>
   
   </div>
-@if (showCreateForm()) {
-  <app-document-create
-    (cancel)="closeCreateForm()"
-  />
-}
 
   <div *ngIf="documents()?.length === 0">
     Aucun document trouvé.

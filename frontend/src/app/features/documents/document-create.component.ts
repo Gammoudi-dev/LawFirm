@@ -8,8 +8,7 @@ import {
 } from '@angular/forms';
 
 import {
-  DocumentCategory,
-  DocumentCreateRequest
+  DocumentCategory  
 } from '../../core/models/document.model';
 
 @Component({
@@ -62,5 +61,13 @@ export class DocumentCreateComponent {
     Validators.required
   )
   });
+onFileSelected(event: Event): void {
+  const input = event.target as HTMLInputElement;
 
+  const file = input.files?.[0];
+
+  if (file) {
+    this.documentForm.controls.file.setValue(file);
+  }
+}
 }
