@@ -37,3 +37,11 @@ export interface DocumentResponse {
   uploadedByUsername: string;
   createdAt: string;
 }
+
+interface DocumentCreateRequest {
+  caseId: number;
+  title: string;
+  description?: string;
+  category: DocumentCategory;
+  file: File;
+}

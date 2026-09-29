@@ -10,4 +10,16 @@ import { DocumentSummary } from '../../core/models/document.model';
 })
 export class DocumentListComponent {
   documents = signal<DocumentSummary[] | null>(null);
+
+  showCreateForm = signal(false);
+
+  openCreateForm(): void {
+    this.showCreateForm.set(true);
+  }
+
+  closeCreateForm(): void {
+    this.showCreateForm.set(false);
+  }
+
+  
 }

@@ -81,13 +81,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'documents',
-        loadComponent: () =>
-          import('./features/documents/document-list.component').then(
-            (m) => m.DocumentListComponent
-          ),
-      },
-      {
         path: 'clients',
         loadComponent: () =>
           import('./features/clients/client-list/client-list.component').then(

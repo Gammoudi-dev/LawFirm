@@ -1,0 +1,62 @@
+<form [formGroup]="documentForm">
+
+  <div>
+    <label for="caseId">Case ID</label>
+
+    <input
+      id="caseId"
+      type="number"
+      formControlName="caseId"
+    >
+  </div>
+
+  <div>
+    <label for="title">Titre</label>
+
+    <input
+      id="title"
+      type="text"
+      formControlName="title"
+    >
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+
+    <textarea
+      id="description"
+      formControlName="description"
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="category">Catégorie</label>
+
+    <select
+      id="category"
+      formControlName="category"
+    >
+      <option value="CONTRAT">Contrat</option>
+      <option value="JUGEMENT">Jugement</option>
+      <option value="ASSIGNATION">Assignation</option>
+      <option value="COURRIER">Courrier</option>
+      <option value="REQUETE">Requête</option>
+      <option value="AUTRE">Autre</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="file">Document</label>
+
+    <input
+      id="file"
+      type="file"
+      (change)="onFileSelected($event)"
+    >
+  </div>
+
+  <button type="submit">
+    Créer le document
+  </button>
+
+</form>

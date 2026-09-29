@@ -12,7 +12,6 @@ public record ClientSummary(
     String taxNumber,
     String phone,
     String email,
-    String country,
     Boolean active,
     int caseCount,
     LocalDate dateOfBirth
