@@ -1,0 +1,89 @@
+<div class="p-6">
+
+  <!-- Header -->
+  <div class="mb-6 flex items-center justify-between">
+
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+        Notes
+      </h1>
+
+      <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        Manage notes
+      </p>
+    </div>
+
+    <button
+      type="button"
+      (click)="openCreateForm()"
+      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"
+    >
+      + New Note
+    </button>
+
+  </div>
+
+
+  <!-- Liste vide -->
+  @if (notes().length === 0) {
+
+    <div class="p-6 text-center text-gray-600 dark:text-gray-400">
+      Aucune note trouvée.
+    </div>
+
+  }
+
+
+  <!-- Liste des notes -->
+  @if (notes().length > 0) {
+
+    <div class="space-y-4">
+
+      @for (note of notes(); track note.id) {
+
+        <div
+          class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"
+        >
+
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
+            {{ note.title }}
+          </h2>
+
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {{ note.content }}
+          </p>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+
+  <!-- Popup création -->
+  @if (showCreateForm()) {
+
+    <div
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+    >
+
+      <div
+        class="relative w-full max-w-2xl rounded-xl bg-white shadow-xl dark:bg-gray-800"
+      >
+
+        <app-note-create
+          [embedded]="true"
+          (cancelled)="closeCreateForm()"
+          (created)="closeCreateForm()"
+        >
+        </app-note-create>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>

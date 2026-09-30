@@ -100,6 +100,11 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'notes',
+        loadComponent: () =>
+          import('./features/notes/note-list.component').then((m) => m.NoteListComponent),
+      },
+      {
         path: 'users',
         loadComponent: () =>
           import('./features/users/user-list/user-list.component').then((m) => m.UserListComponent),

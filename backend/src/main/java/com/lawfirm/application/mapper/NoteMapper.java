@@ -1,8 +1,9 @@
-package com.lawfirm.application.mapper;
 
-import com.lawfirm.application.dto.request.NoteRequest;
-import com.lawfirm.application.dto.response.NoteResponse;
-import com.lawfirm.domain.model.Note;
+package com.lawfirm.application.mapper; 
+
+import com.lawfirm.application.dto.request.NoteRequest; 
+import com.lawfirm.application.dto.response.NoteResponse; 
+import com.lawfirm.domain.model.Note; 
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,8 +12,8 @@ public class NoteMapper {
     public Note toEntity(NoteRequest request) {
         Note note = new Note();
 
-        note.setTitle(request.getTitle());
-        note.setContent(request.getContent());
+        note.setTitle(request.title());
+        note.setContent(request.content());
 
         return note;
     }

@@ -56,6 +56,7 @@ export class SidebarComponent {
     { label: 'Groups', icon: 'group', route: '/groups', permission: 'SYSTEM_MANAGE' },
     { label: 'Audit Logs', icon: 'history', route: '/audit-logs', permission: 'SYSTEM_MANAGE' },
     { label: 'Documents', icon: 'description', route: '/documents' },
+    { label: 'Notes', icon: 'description', route: '/notes' },
     { label: 'Settings', icon: 'settings', route: '/settings' },
   ];
 

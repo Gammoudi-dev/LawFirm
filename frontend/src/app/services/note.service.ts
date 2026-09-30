@@ -1,0 +1,16 @@
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { Note, NoteRequest } from '../core/models/note.model';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class NoteService {
+  private http = inject(HttpClient);
+  private apiUrl = `${environment.apiUrl}/notes`;
+  createNote(request: NoteRequest): Observable<Note> {
+    return this.http.post<Note>(this.apiUrl, request);
+  }
+}

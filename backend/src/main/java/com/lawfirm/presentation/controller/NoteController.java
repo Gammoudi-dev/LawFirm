@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@requestMapping("/api/notes")
+@RequestMapping("/api/notes")
 public class NoteController {
 
     private final NoteService noteService;
