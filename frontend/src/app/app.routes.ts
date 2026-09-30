@@ -93,6 +93,18 @@ export const routes: Routes = [
           import('./features/users/user-list/user-list.component').then((m) => m.UserListComponent),
       },
       {
+        path: 'documents',
+        loadComponent: () =>
+          import('./features/documents/document-list.component').then(
+            (m) => m.DocumentListComponent
+          ),
+      },
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('./features/users/user-list/user-list.component').then((m) => m.UserListComponent),
+      },
+      {
         path: 'groups',
         loadComponent: () =>
           import('./features/groups/group-list/group-list.component').then(
