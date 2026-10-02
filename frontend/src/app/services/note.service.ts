@@ -10,7 +10,17 @@ import { Note, NoteRequest } from '../core/models/note.model';
 export class NoteService {
   private http = inject(HttpClient);
   private apiUrl = `${environment.apiUrl}/notes`;
+
+  getAll(): Observable<Note[]> {
+    return this.http.get<Note[]>(this.apiUrl);
+  }
   createNote(request: NoteRequest): Observable<Note> {
     return this.http.post<Note>(this.apiUrl, request);
+  }
+  deleteNote(noteId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${noteId}`);
+  }
+  getById(noteId: number): Observable<Note> {
+    return this.http.get<Note>(`${this.apiUrl}/${noteId}`);
   }
 }

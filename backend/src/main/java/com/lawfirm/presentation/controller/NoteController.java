@@ -5,7 +5,7 @@ import com.lawfirm.application.service.NoteService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
@@ -21,5 +21,22 @@ public class NoteController {
     public NoteResponse createNote(@Valid @RequestBody NoteRequest request) {
         return noteService.create(request);
     }
+
+    @GetMapping
+    public List<NoteResponse> getAllNotes() {
+        return noteService.getAll();
+    }
+
+    @DeleteMapping("/{noteId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)  
+    public void deleteNote(@PathVariable Long noteId) {
+        noteService.delete(noteId);
+    } 
+
+    @GetMapping("/{noteId}")
+    public NoteResponse getNoteById(@PathVariable Long noteId) {
+        return noteService.getById(noteId);
+    }   
+    
 }
 

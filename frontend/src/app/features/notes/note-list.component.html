@@ -1,89 +1,215 @@
-<div class="p-6">
+<div class="p-6 space-y-4">
 
   <!-- Header -->
-  <div class="mb-6 flex items-center justify-between">
 
-    <div>
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-        Notes
-      </h1>
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
 
-      <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-        Manage notes
-      </p>
-    </div>
+<div>
+  <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+    Notes
+  </h1>
 
-    <button
-      type="button"
-      (click)="openCreateForm()"
-      class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"
-    >
-      + New Note
-    </button>
+  <p class="text-sm text-gray-500 dark:text-gray-400">
+    Manage your notes
+  </p>
+</div>
+
+<button
+  type="button"
+  (click)="openCreateForm()"
+  class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg flex items-center gap-2"
+>
+  <span class="material-icons text-base">add</span>
+  New Note
+</button>
+
 
   </div>
 
+  <!-- Table -->
 
-  <!-- Liste vide -->
-  @if (notes().length === 0) {
-
-    <div class="p-6 text-center text-gray-600 dark:text-gray-400">
-      Aucune note trouvée.
-    </div>
-
-  }
+  <div
+    class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+  >
 
 
-  <!-- Liste des notes -->
-  @if (notes().length > 0) {
+@if (notes().length === 0) {
 
-    <div class="space-y-4">
+  <!-- Empty state -->
+  <div class="p-12 text-center text-gray-500 dark:text-gray-400">
 
-      @for (note of notes(); track note.id) {
+    <span class="material-icons text-5xl mb-3 block">
+      sticky_note_2
+    </span>
 
-        <div
-          class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"
-        >
+    <p>No notes found.</p>
 
-          <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
-            {{ note.title }}
-          </h2>
+  </div>
 
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            {{ note.content }}
-          </p>
+} @else {
 
-        </div>
+  <div class="overflow-x-auto">
 
-      }
+    <table class="w-full text-sm">
 
-    </div>
-
-  }
-
-
-  <!-- Popup création -->
-  @if (showCreateForm()) {
-
-    <div
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-    >
-
-      <div
-        class="relative w-full max-w-2xl rounded-xl bg-white shadow-xl dark:bg-gray-800"
+      <!-- Header -->
+      <thead
+        class="bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700"
       >
 
-        <app-note-create
-          [embedded]="true"
-          (cancelled)="closeCreateForm()"
-          (created)="closeCreateForm()"
-        >
-        </app-note-create>
+        <tr>
 
-      </div>
+          <th
+            class="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-300"
+          >
+            ID
+          </th>
 
-    </div>
+          <th
+            class="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-300"
+          >
+            Title
+          </th>
 
-  }
+          <th
+            class="px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-300"
+          >
+            Content
+          </th>
+
+          <th
+            class="px-4 py-3 text-right font-semibold text-gray-700 dark:text-gray-300"
+          >
+            Actions
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <!-- Body -->
+      <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+
+        @for (note of notes(); track note.id) {
+
+          <tr
+            class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors"
+          >
+
+            <!-- ID -->
+            <td
+              class="px-4 py-3 font-medium text-gray-900 dark:text-white"
+            >
+              {{ note.id }}
+            </td>
+
+
+            <!-- Title -->
+            <td
+              class="px-4 py-3 font-medium text-gray-900 dark:text-white"
+            >
+              {{ note.title }}
+            </td>
+
+
+            <!-- Content -->
+            <td
+              class="px-4 py-3 text-gray-600 dark:text-gray-400 max-w-xl"
+            >
+              <div class="truncate">
+                {{ note.content }}
+              </div>
+            </td>
+
+
+            <!-- Actions -->
+            <td class="px-4 py-3 text-right">
+
+              <div class="flex justify-end gap-1">
+
+                <!-- View -->
+                <button
+                  type="button"
+                  [routerLink]="['/notes', note.id]"
+                  title="View note"
+                  class="p-1.5 text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 rounded"
+                >
+                  <span class="material-icons text-base">
+                    visibility
+                  </span>
+                </button>
+
+
+                <!-- Edit -->
+                <button
+                  type="button"
+                  title="Edit note"
+                  class="p-1.5 text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 rounded"
+                >
+                  <span class="material-icons text-base">
+                    edit
+                  </span>
+                </button>
+
+
+                <!-- Delete -->
+                <button
+                  type="button"
+                  (click)="deleteNote(note.id)"
+                  title="Delete note"
+                  class="p-1.5 text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 rounded"
+                >
+                  <span class="material-icons text-base">
+                    delete
+                  </span>
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+}
+
+
+  </div>
+
+  <!-- Popup création -->
+
+@if (showCreateForm()) {
+
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+  (click)="closeCreateForm()"
+  (keydown.escape)="closeCreateForm()"
+>
+
+  <div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto"
+    (click)="$event.stopPropagation()"
+  >
+
+    <app-note-create
+      [embedded]="true"
+      (cancelled)="closeCreateForm()"
+      (created)="closeCreateForm()"
+    ></app-note-create>
+
+  </div>
+
+</div>
+
+
+}
 
 </div>

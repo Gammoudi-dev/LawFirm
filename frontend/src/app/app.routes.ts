@@ -105,6 +105,13 @@ export const routes: Routes = [
           import('./features/notes/note-list.component').then((m) => m.NoteListComponent),
       },
       {
+        path: 'notes/:id',
+        loadComponent: () =>
+          import('./features/notes/note-detail/note-detail.component').then(
+            (m) => m.NoteDetailComponent
+          ),
+      },
+      {
         path: 'users',
         loadComponent: () =>
           import('./features/users/user-list/user-list.component').then((m) => m.UserListComponent),

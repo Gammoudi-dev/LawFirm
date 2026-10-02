@@ -6,6 +6,7 @@ import com.lawfirm.application.mapper.NoteMapper;
 import com.lawfirm.domain.model.Note;
 import com.lawfirm.domain.repository.NoteRepository;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class NoteService {
@@ -29,4 +30,20 @@ public class NoteService {
 
         return noteMapper.toResponse(savedNote);
     }
+    public List<NoteResponse> getAll() {
+        return noteRepository.findAll()
+                .stream()
+                .map(noteMapper::toResponse)
+                .toList();
+    }
+
+    public NoteResponse getById(Long noteId) {
+        Note note = noteRepository.findById(noteId).orElseThrow(() -> new IllegalArgumentException("Note not found"));
+        return noteMapper.toResponse(note);
+    }
+
+    public void delete(Long noteId) {
+        noteRepository.deleteById(noteId);
+    }
+
 }
