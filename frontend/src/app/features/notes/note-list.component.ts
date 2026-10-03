@@ -13,7 +13,7 @@ import { NoteService } from '../../services/note.service';
 })
 export class NoteListComponent {
   notes = signal<Note[]>([]);
-
+  noteCount = signal(0);
   showCreateForm = signal(false);
 
   constructor(private noteService: NoteService) {}
@@ -57,5 +57,19 @@ export class NoteListComponent {
 
   closeCreateForm(): void {
     this.showCreateForm.set(false);
+  }
+  onNoteCreated(): void {
+    this.closeCreateForm();
+    this.loadNotes(); // Reload the notes after a new note is created
+  }
+  loadNoteCount(): void {
+    this.noteService.getCount().subscribe({
+      next: (response: { count: number }) => {
+        this.noteCount.set(response.count);
+      },
+      error: (error: unknown) => {
+        console.error('Erreur lors du chargement du nombre de notes', error);
+      },
+    });
   }
 }

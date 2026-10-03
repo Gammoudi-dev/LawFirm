@@ -46,4 +46,27 @@ public class NoteService {
         noteRepository.deleteById(noteId);
     }
 
+    public NoteResponse update(Long noteId, NoteRequest request) {
+        Note existingNote = noteRepository.findById(noteId).orElseThrow(() -> new IllegalArgumentException("Note not found"));
+
+        existingNote.setTitle(request.title());
+        existingNote.setContent(request.content());
+
+        Note updatedNote = noteRepository.save(existingNote);
+
+        return noteMapper.toResponse(updatedNote);
+    }
+
+    public NoteResponse updatenote(long noteId, NoteRequest request){
+            Note exstnote = noteRepository.findById(noteId).orElseThrow(() -> new RuntimeException("Note not found with id: " + noteId));
+            exstnote.setTitle(request.title());
+            exstnote.setContent(request.content());
+            Note updatenote = noteRepository.save(exstnote);
+            return noteMapper.toResponse(updatenote);
+
+    }
+
+    public long countNotes() {
+        return noteRepository.count();
+    }
 }

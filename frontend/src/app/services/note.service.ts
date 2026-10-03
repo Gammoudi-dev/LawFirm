@@ -23,4 +23,7 @@ export class NoteService {
   getById(noteId: number): Observable<Note> {
     return this.http.get<Note>(`${this.apiUrl}/${noteId}`);
   }
+  getCount(): Observable<{ count: number }> {
+    return this.http.get<{ count: number }>(`${this.apiUrl}/count`);
+  }
 }

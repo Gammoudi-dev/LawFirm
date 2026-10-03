@@ -100,6 +100,14 @@ public class AuthService {
             .build();
     }
 
+
+@Transactional(readOnly = true)
+public UserResponse getCurrentUser(Long userId) {
+    return userRepository.findById(userId)
+        .map(userMapper::toResponse)
+        .orElseThrow(() -> new RuntimeException("User not found"));
+}
+
     @Transactional
     public AuthResponse register(RegisterRequest request) {
         log.debug("Registration attempt for user: {}", request.getUsername());

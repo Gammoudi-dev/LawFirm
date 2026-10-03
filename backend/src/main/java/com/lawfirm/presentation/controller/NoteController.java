@@ -6,6 +6,11 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
+
+import javax.crypto.Mac;
+
+import org.springframework.http.ResponseEntity;
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
@@ -37,6 +42,15 @@ public class NoteController {
     public NoteResponse getNoteById(@PathVariable Long noteId) {
         return noteService.getById(noteId);
     }   
-    
+
+    @PutMapping("/{noteId}")
+    public NoteResponse updateNote(@PathVariable Long noteId, @Valid @RequestBody NoteRequest request) {
+        return noteService.updatenote(noteId, request);
+    }
+    @GetMapping("/count")
+    public ResponseEntity<Map<String, Long>> countNote() {
+        long count = noteService.countNotes();
+        return ResponseEntity.ok(Map.of("count", count));
+    }
 }
 
