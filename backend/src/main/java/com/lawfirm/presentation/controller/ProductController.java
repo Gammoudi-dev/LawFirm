@@ -58,5 +58,8 @@ public class ProductController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
-    
+    @GetMapping("/totalprice")
+    public void totalPrice() {
+        service.totpservice();
+    }
 }

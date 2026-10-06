@@ -35,6 +35,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
       this.loadProducts();
     });
     this.loadProducts();
+    this.totalpricefo();
   }
 
   ngOnDestroy(): void {
@@ -115,6 +116,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
       error: () => {
         this.errorMessage.set('Erreur lors de la suppression');
+      },
+    });
+  }
+  totpricev: number = 0;
+  totalpricefo(): void {
+    this.productService.totpservicefo().subscribe({
+      next: (total) => {
+        this.totpricev = total;
       },
     });
   }

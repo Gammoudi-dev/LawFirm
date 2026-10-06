@@ -36,4 +36,7 @@ export class ProductService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  totpservicefo(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/totalprice`);
+  }
 }

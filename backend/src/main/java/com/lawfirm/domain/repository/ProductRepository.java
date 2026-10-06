@@ -18,4 +18,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
         + "OR LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%')) "
         + "OR LOWER(p.category) LIKE LOWER(CONCAT('%', :search, '%'))")
     Page<Product> search(@Param("search") String search, Pageable pageable);
+
+    @Query ("SELECT sum (p.price) FROM Product p")
+    Double getTotPRep();
 }
