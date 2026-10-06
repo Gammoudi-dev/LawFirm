@@ -26,4 +26,7 @@ export class NoteService {
   getCount(): Observable<{ count: number }> {
     return this.http.get<{ count: number }>(`${this.apiUrl}/count`);
   }
+  updateNote(noteId: number, request: NoteRequest): Observable<Note> {
+    return this.http.put<Note>(`${this.apiUrl}/${noteId}`, request);
+  }
 }

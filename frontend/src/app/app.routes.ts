@@ -112,6 +112,11 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'notes/edit/:id',
+        loadComponent: () =>
+          import('./features/notes/note-edit/note-edit.component').then((m) => m.NoteEditComponent),
+      },
+      {
         path: 'users',
         loadComponent: () =>
           import('./features/users/user-list/user-list.component').then((m) => m.UserListComponent),
