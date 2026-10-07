@@ -59,7 +59,7 @@ public class ProductController {
         service.delete(id);
     }
     @GetMapping("/totalprice")
-    public void totalPrice() {
-        service.totpservice();
+    public double totalPrice() {
+       return service.totpservice();
     }
 }
